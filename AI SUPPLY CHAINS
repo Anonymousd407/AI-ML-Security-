@@ -1,0 +1,156 @@
+🛡️ UNDERSTANDING AI SUPPLY CHAINS — FULL WRITEUP
+📌 1. INTRODUCTION
+
+AI systems rely on external components such as:
+
+Models
+Datasets
+Frameworks
+Dependencies
+
+Hii inaunda AI Supply Chain, ambapo kila component ni point ya attack.
+
+🔗 2. TRADITIONAL VS AI SUPPLY CHAIN
+🏠 Analogy
+
+House = bricks + wiring + plumbing
+AI system = models + datasets + packages
+
+👉 Weakest component = whole system risk
+
+📦 3. CORE COMPONENTS (AI SUPPLY CHAIN)
+
+(Alphabetical order)
+
+Datasets
+Dependencies
+Frameworks
+Models
+⚠️ 4. TRANSITIVE DEPENDENCIES
+❓ Q: What is filelock?
+
+Answer: Transitive dependency
+
+👉 Installed automatically by other packages (e.g. pip install torch)
+
+🧠 5. MODEL FILE SECURITY
+❓ Q: What allows model files to execute code when loaded?
+
+Answer: Serialized objects (pickle-based formats)
+
+📁 Risky formats
+.pkl
+.pt
+.bin
+✅ Safe format
+.safetensors
+🧪 6. AI SUPPLY CHAIN PARADIGMS
+📥 Download Paradigm
+You download model files locally
+You trust file integrity
+Full control but high risk
+🌐 API Paradigm
+You call hosted models
+No file access
+Hidden trust in provider
+❓ Q: Dominant format for local LLMs?
+
+Answer: .gguf
+
+🧱 7. ATTACK LAYERS
+Layer 1: Model Layer
+Backdoored weights
+Serialized code execution
+Architecture manipulation
+Layer 2: Dependency Layer
+Malicious packages
+Typosquatting
+pip confusion attacks
+Layer 3: Data Layer
+Poisoned datasets
+Even 0.1% manipulation = backdoor
+Layer 4: Infrastructure Layer
+CI/CD compromise
+Repo takeover
+Credential theft
+❓ Questions
+
+Q: Pickle attacks occur at which layer?
+👉 Model layer
+
+Q: SafeTensors eliminates which attack type?
+👉 Serialization-level attacks
+
+Q: Dataset poisoning belongs to which layer?
+👉 Data layer
+
+💥 8. REAL WORLD INCIDENTS
+🐍 PyTorch (2022)
+Fake dependency (torchtriton)
+pip resolution exploited
+Data theft via DNS exfiltration
+
+👉 Layer: Dependency
+
+🔐 Hugging Face (2023–2024)
+API token leaks
+Malicious models uploaded
+Hidden code execution in pickle models
+
+👉 Layers: Model + Infrastructure
+
+⚙️ Ultralytics Attack (2024)
+GitHub Actions compromised
+Malware injected into builds
+
+👉 Layer: Infrastructure
+
+💰 Solana web3.js (2024)
+Maintainer credentials stolen
+Malicious npm release
+Crypto theft
+
+👉 Layer: Infrastructure
+
+🧨 NullifAI (2025)
+Corrupted pickle bypassed scanners
+Executed hidden payloads
+
+👉 Layer: Model
+
+🧾 9. TROJAN MODEL ANALYSIS (STATIC SITE)
+❓ Q1: Unverified organisation
+
+Answer: trustworthy-ai-models
+
+❓ Q2: Downloads (last month)
+
+Answer: 127
+
+❓ Q3: Verified model format
+
+Answer: SafeTensors
+
+🧠 10. SECURITY CHECKLIST
+
+Before deploying any AI model:
+
+✔ Check organisation trust
+✔ Check download volume
+✔ Inspect file format
+✔ Review security scan
+✔ Read model card
+✔ Compare with verified baseline
+✔ Check community warnings
+
+🛡️ 11. KEY TAKEAWAY
+
+AI supply chains fail not because models are weak, but because:
+
+Trust is assumed
+Files are opaque
+Dependencies are hidden
+Updates are uncontrolled
+🔥 FINAL PRINCIPLE
+
+If you cannot verify every link in the AI supply chain, you cannot fully trust the model.
